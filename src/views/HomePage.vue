@@ -18,7 +18,9 @@
         <input type="text" v-model="user" placeholder="username" />
         <label>on</label>
         <div class="button-group">
-          <button :class="{ selected: site === 'Lichess' }" @click="site = 'Lichess'">Lichess</button>
+          <button :class="{ selected: site === 'Lichess' }" @click="site = 'Lichess'">
+            Lichess
+          </button>
           <button :class="{ selected: site === 'Chess.com' }" @click="site = 'Chess.com'">
             Chess.com
           </button>
@@ -38,7 +40,7 @@
         <button
           @click="loadGames()"
           class="load-button"
-          :class="{ 'loading': loading, 'loaded': loaded }"
+          :class="{ loading: loading, loaded: loaded }"
           :disabled="loading || loaded"
         >
           {{ loadButtonText }}
@@ -104,11 +106,8 @@
     <section class="result-charts hideable" :class="{ hidden: totalPlayed == 0 }">
       <h2>Game Results</h2>
       <p>
-        <v-icon
-          name="bi-arrow-right-square-fill"
-          fill="var(--primary-color)"
-          scale="1.2"
-        />Games where <b>{{ user }}</b> played en passant at least once ({{
+        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />Games
+        where <b>{{ user }}</b> played en passant at least once ({{
           results.enPassant.w.total + results.enPassant.b.total
         }}).
       </p>
@@ -116,11 +115,8 @@
         <Bar :data="chartData('enPassant')" :options="chartOptions" />
       </div>
       <p>
-        <v-icon
-          name="bi-arrow-right-square-fill"
-          fill="var(--primary-color)"
-          scale="1.2"
-        />Games where <b>{{ user }}</b> never played en passant ({{
+        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />Games
+        where <b>{{ user }}</b> never played en passant ({{
           results.noEnPassant.w.total + results.noEnPassant.b.total
         }}).
       </p>
@@ -140,9 +136,7 @@
     <div class="links-title">
       <span>Made by</span>
       <span>
-        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" /><b
-          >Lyqst</b
-        ></span
+        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" /><b>Lyqst</b></span
       >
     </div>
     <ul class="links-list">
@@ -310,16 +304,18 @@ export default {
           let buf = ''
 
           const loop = () =>
-            stream.read().then(({ value }) => {
-              const chunk = decoder.decode(value, {
-                stream: true
-              })
-              buf += chunk
+            stream.read().then(({ done, value }) => {
+              if (!done) {
+                const chunk = decoder.decode(value, {
+                  stream: true
+                })
+                buf += chunk
 
-              const parts = buf.split(matcher)
-              buf = parts.pop()
-              for (const i of parts.filter((p) => p)) this.processLichessGame(JSON.parse(i))
-              return loop()
+                const parts = buf.split(matcher)
+                buf = parts.pop()
+                for (const i of parts.filter((p) => p)) this.processLichessGame(JSON.parse(i))
+                return loop()
+              }
             })
 
           return loop()
