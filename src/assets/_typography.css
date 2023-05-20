@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+:root {
+  --fs--2: clamp(0.64rem, 0.18vw + 0.6rem, 0.74rem);
+  --fs--1: clamp(0.8rem, 0.34vw + 0.72rem, 0.98rem);
+  --fs-0: clamp(1rem, 0.57vw + 0.86rem, 1.31rem);
+  --fs-1: clamp(1.25rem, 0.91vw + 1.02rem, 1.75rem);
+  --fs-2: clamp(1.56rem, 1.4vw + 1.21rem, 2.33rem);
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fs-2);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--fs-1);
+}
+
+body {
+  font-size: var(--fs-0);
+}
+
+input[type='text'] {
+  font-weight: 900;
+}
+
+input[type='text']::placeholder {
+  font-weight: initial;
+}
+
+.quote {
+  font-size: var(--fs--1);
+  font-style: italic;
+}
+
+.quote > :first-child::before,
+.quote > :first-child::after {
+  font-weight: bold;
+}
+
+.quote > :first-child::before {
+  content: open-quote;
+}
+
+.quote > :first-child::after {
+  content: close-quote;
+}
+
+.quote > :last-child::before {
+  content: '-';
+}
+
+.lichess-login {
+  font-size: var(--fs--1);
+}

@@ -1,0 +1,78 @@
+:root {
+  --primary-color: hsl(272, 45%, 35%);
+  --primary-color-light: hsl(272, 31%, 72%);
+  --primary-color-dark: hsl(272, 54%, 18%);
+  --secondary-color: hsl(60, 3%, 81%);
+  --secondary-color-light: hsl(60, 4%, 98%);
+  --secondary-color-dark: hsl(60, 1%, 18%);
+  --secondary-color-transparent: hsla(60, 3%, 98%, 0.3);
+  --accent-color: hsl(150, 17%, 56%);
+  --accent-color-light: hsl(150, 17%, 80%);
+  --accent-color-dark: hsl(150, 17%, 26%);
+  --win-color: var(--primary-color);
+  --win-color-light: var(--primary-color-light);
+  --draw-color: var(--secondary-color-dark);
+  --draw-color-light: var(--secondary-color);
+  --loss-color: hsl(283, 4%, 19%);
+  --loss-color-light: hsl(283, 4%, 45%);
+}
+
+html {
+  color: var(--secondary-color-dark);
+  background: linear-gradient(-240deg, var(--secondary-color-light), var(--secondary-color));
+}
+
+section {
+  background-color: var(--secondary-color-transparent);
+}
+
+h1,
+h2,
+b {
+  color: var(--primary-color);
+}
+
+a,
+input[type='text'],
+button {
+  color: var(--accent-color);
+}
+
+::selection {
+  color: var(--accent-color);
+  background-color: var(--accent-color-dark);
+}
+
+button {
+  background-color: var(--accent-color-light);
+}
+
+button.selected {
+  color: var(--accent-color-light);
+  background-color: var(--accent-color-dark);
+}
+
+button:hover,
+button:focus-visible {
+  color: var(--accent-color-light);
+  background-color: var(--accent-color);
+}
+
+.load-button {
+  color:var(--accent-color-light);
+  background-color: var(--accent-color-dark);
+}
+
+.load-button.loading {
+  color: var(--accent-color-dark);
+}
+
+.load-button.loaded {
+  color: var(--accent-color-dark);
+  background-color: var(--accent-color);
+}
+
+.log-info,
+.logged-in {
+  color: var(--primary-color);
+}
