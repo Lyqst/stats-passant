@@ -246,8 +246,8 @@ export default {
         }
       },
       oauth: new OAuth2AuthCodePKCE({
-        authorizationUrl: 'https:lichess.org/oauth',
-        tokenUrl: 'https:lichess.org/api/token',
+        authorizationUrl: 'https://lichess.org/oauth',
+        tokenUrl: 'https://lichess.org/api/token',
         clientId: 'stats-passant',
         scopes: [],
         redirectUrl: (() => {
