@@ -11,7 +11,9 @@ import {
   BiArrowRightSquareFill,
   FaExternalLinkSquareAlt,
   MdInfo,
-  HiSolidBackspace  
+  HiSolidBackspace,
+  BiSunFill,
+  BiMoonFill,
 } from 'oh-vue-icons/icons'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -23,7 +25,9 @@ addIcons(
   BiArrowRightSquareFill,
   FaExternalLinkSquareAlt,
   MdInfo,
-  HiSolidBackspace  
+  HiSolidBackspace,
+  BiSunFill,
+  BiMoonFill,
 )
 
 const app = createApp(App)

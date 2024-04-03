@@ -34,7 +34,9 @@
                 Speeds up game loading
               </span>
             </template>
-            <div v-else class="log-info"><v-icon name="md-info" fill="var(--text-accent-color)" /> Logged in</div>
+            <div v-else class="log-info">
+              <v-icon name="md-info" fill="var(--text-accent-color)" /> Logged in
+            </div>
           </div>
         </div>
       </div>
@@ -50,6 +52,11 @@
         <button v-if="loaded" class="reset-button" @click="reset()">
           <v-icon name="hi-solid-backspace" />
         </button>
+      </div>
+      <div class="switch-container">
+        <v-icon name="bi-sun-fill" fill="var(--text-color)" />
+        <div class="switch" :class="this.darkMode ? 'dark' : ''" @click="toggleMode" />
+        <v-icon name="bi-moon-fill" fill="var(--text-color)" />
       </div>
     </section>
     <section class="stats hideable" :class="{ hidden: totalPlayed == 0 }">
@@ -182,6 +189,7 @@ export default {
     return {
       user: '',
       site: '',
+      darkMode: false,
       loading: false,
       loaded: false,
       chessComArchives: 0,
@@ -292,8 +300,7 @@ export default {
       if (this.accessContent) {
         fetch = this.oauth.decorateFetchHTTPClient(window.fetch)
       }
-
-      const stream = fetch(`https://lichess.org/api/games/user/${this.user}`, {
+      const stream = fetch(`https://lichess.org/api/games/user/${this.user}?perfType=ultraBullet%2Cbullet%2Cblitz%2Crapid%2Cclassical%2Ccorrespondence`, {
         headers: { Accept: 'application/x-ndjson' }
       })
 
@@ -419,7 +426,7 @@ export default {
 
         if (enPassant) {
           if (chess.isCheckmate())
-            this.checkmates.push(this.site === 'Lichess' ? url + '/#' + move.length : url)
+            this.checkmates.push(this.site === 'Lichess' ? url + '/#' + moveNumber : url)
           if (!this.earliest.move || Math.floor((moveNumber + 1) / 2) < this.earliest.move) {
             this.earliest.move = Math.floor((moveNumber + 1) / 2)
             this.earliest.link = this.site === 'Lichess' ? url + '/#' + moveNumber : url
@@ -528,6 +535,15 @@ export default {
           }
         ]
       }
+    },
+    toggleMode() {
+      this.darkMode = !this.darkMode
+      localStorage.setItem('darkMode', this.darkMode)
+    }
+  },
+  watch: {
+    darkMode() {
+      document.documentElement.classList.toggle('dark', this.darkMode)
     }
   },
   beforeMount() {
@@ -540,6 +556,15 @@ export default {
         this.accessContent = token
       })
     })
+    if (localStorage.getItem('darkMode') === 'true') {
+      this.darkMode = true
+    } else if (localStorage.getItem('darkMode') === 'false') {
+      this.darkMode = false
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.darkMode = true
+    } else {
+      this.darkMode = false
+    }
   }
 }
 </script>
