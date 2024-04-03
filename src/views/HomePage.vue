@@ -144,7 +144,7 @@
       <li><a href="https://github.com/Lyqst">Github</a></li>
       <li><a href="https://lichess.org/@/lyqst">Lichess</a></li>
       <li><a href="https://www.chess.com/member/lyqst">Chess.com</a></li>
-      <li><a href="https://www.instagram.com/benja.appel/">Instagram</a></li>
+      <li><a href="https://www.twitch.com/lyqst/">Twitch.tv</a></li>
     </ul>
   </aside>
 </template>
