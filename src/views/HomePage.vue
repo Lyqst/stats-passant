@@ -17,23 +17,25 @@
         <label> Load data for </label>
         <input type="text" v-model="user" placeholder="username" />
         <label>on</label>
-        <div class="button-group">
-          <button :class="{ selected: site === 'Lichess' }" @click="site = 'Lichess'">
-            Lichess
-          </button>
-          <button :class="{ selected: site === 'Chess.com' }" @click="site = 'Chess.com'">
-            Chess.com
-          </button>
-        </div>
-        <div class="lichess-login hideable" :class="{ hidden: site != 'Lichess' }">
-          <div v-if="!accessContent">
-            <a href="#" @click="loginLichess()">Login to Lichess</a>
-            <span class="log-info">
-              <v-icon name="md-info" fill="var(--primary-color)" />
-              Speeds up game loading
-            </span>
+        <div class="site-select" :class="{ 'login-show': site == 'Lichess' }">
+          <div class="button-group">
+            <button :class="{ selected: site === 'Lichess' }" @click="site = 'Lichess'">
+              Lichess
+            </button>
+            <button :class="{ selected: site === 'Chess.com' }" @click="site = 'Chess.com'">
+              Chess.com
+            </button>
           </div>
-          <div v-else class="logged-in">Logged in</div>
+          <div class="lichess-login">
+            <template v-if="!accessContent">
+              <a href="#" @click="loginLichess()">Login to Lichess</a>
+              <span class="log-info">
+                <v-icon name="md-info" fill="var(--primary-color)" />
+                Speeds up game loading
+              </span>
+            </template>
+            <div v-else class="log-info"><v-icon name="md-info" fill="var(--primary-color)" /> Logged in</div>
+          </div>
         </div>
       </div>
       <div class="form-footer hideable" :class="{ hidden: !user || !site }">
@@ -274,6 +276,7 @@ export default {
   },
   methods: {
     async loginLichess() {
+      sessionStorage.setItem('username', this.user)
       await this.oauth.fetchAuthorizationCode()
     },
 
@@ -528,8 +531,15 @@ export default {
     }
   },
   beforeMount() {
-    this.oauth.isReturningFromAuthServer()
-    this.oauth.getAccessToken().then((token) => (this.accessContent = token))
+    this.oauth.isReturningFromAuthServer().then((hasAuthCode) => {
+      this.site = 'Lichess'
+      this.user = sessionStorage.getItem('username')
+      sessionStorage.removeItem('username')
+      if (!hasAuthCode) return
+      this.oauth.getAccessToken().then((token) => {
+        this.accessContent = token
+      })
+    })
   }
 }
 </script>

@@ -181,15 +181,29 @@ button {
   }
 }
 
-.lichess-login {
+.site-select {
+  position: relative;
   display: grid;
-  grid-column: 2/3;
-  flex-direction: column;
-  margin-block-start: 0.4em;
+  padding-bottom: 0;
+  transition: padding 200ms ease-in-out;
+}
+
+.site-select.login-show {
+  padding-bottom: 1.25em;
+}
+
+.lichess-login {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+
+  display: flex;
+  gap: 0.5em;
 }
 
 .log-info {
-  padding-inline-start: 0.5em;
+  display: flex;
+  place-items: center;
 }
 
 .form-footer {
