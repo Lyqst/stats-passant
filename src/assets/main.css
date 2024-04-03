@@ -37,7 +37,7 @@ h2 {
   margin-block-start: -0.625em;
   margin-block-end: 0.625em;
   text-align: center;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 1px var(--text-accent-color);
 }
 
 p {
@@ -46,13 +46,13 @@ p {
 }
 
 input[type='text'] {
-  border-bottom: solid 1px rgba(42, 42, 42, 0.2);
+  border-bottom: solid 1px var(--text-action-color);
   transition: border 140ms ease, background-color 140ms ease;
 }
 
 input[type='text']:hover,
 input[type='text']:focus {
-  border-bottom: solid 1px var(--accent-color);
+  border-color: var(--text-active-color);
 }
 
 button {
@@ -127,10 +127,10 @@ button {
 @keyframes pulse {
   0%,
   100% {
-    background-color: var(--accent-color);
+    background-color: var(--surface-accent-color);
   }
   50% {
-    background-color: var(--accent-color-light);
+    background-color: var(--surface-active-color);
   }
 }
 
