@@ -60,7 +60,7 @@ input[type='text']::placeholder {
 }
 
 .quote > :last-child::before {
-  content: '-';
+  content: '—';
 }
 
 .lichess-login {
