@@ -223,10 +223,9 @@ export default {
         animation: { duration: 150 },
         plugins: {
           datalabels: {
-            color: '#000000',
             diplay: 'auto',
             formatter: function (value) {
-              if (!value) return ''
+              if (!value || value < 5) return ''
               return value.toFixed(0) + '%'
             }
           },
