@@ -1,196 +1,15 @@
 <template>
   <div class="chessboard">
-    <div class="row">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
-    <div class="row-reversed">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
-    <div class="row">
-      <div class="square">
+    <div v-for="row in 8" :key="row" :class="row % 2 === 1 ? 'row' : 'row-reversed'">
+      <div v-for="col in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']" :key="col + row" class="square">
         <div
+          v-if="(row === 3 || row === 6) && squares[col + row]"
           class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.a6 ? 0.25 + (0.75 * squares.a6) / played.w : 0 }"
+          v-bind:style="{ opacity: 0.5 + 0.5 * Math.pow((squares[col + row]) / Math.max(...Object.values(squares)), 2)}"
         >
-          {{ squares.a6 }}
+          {{ squares[col + row] }}
         </div>
       </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.b6 ? 0.25 + (0.75 * squares.b6) / played.w : 0 }"
-        >
-          {{ squares.b6 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.c6 ? 0.25 + (0.75 * squares.c6) / played.w : 0 }"
-        >
-          {{ squares.c6 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.d6 ? 0.25 + (0.75 * squares.d6) / played.w : 0 }"
-        >
-          {{ squares.d6 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.e6 ? 0.25 + (0.75 * squares.e6) / played.w : 0 }"
-        >
-          {{ squares.e6 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.f6 ? 0.25 + (0.75 * squares.f6) / played.w : 0 }"
-        >
-          {{ squares.f6 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.g6 ? 0.25 + (0.75 * squares.g6) / played.w : 0 }"
-        >
-          {{ squares.g6 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.h6 ? 0.25 + (0.75 * squares.h6) / played.w : 0 }"
-        >
-          {{ squares.h6 }}
-        </div>
-      </div>
-    </div>
-    <div class="row-reversed">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
-    <div class="row">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
-    <div class="row-reversed">
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.a3 ? 0.25 + (0.75 * squares.a3) / played.b : 0 }"
-        >
-          {{ squares.a3 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.b3 ? 0.25 + (0.75 * squares.b3) / played.b : 0 }"
-        >
-          {{ squares.b3 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.c3 ? 0.25 + (0.75 * squares.c3) / played.b : 0 }"
-        >
-          {{ squares.c3 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.d3 ? 0.25 + (0.75 * squares.d3) / played.b : 0 }"
-        >
-          {{ squares.d3 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.e3 ? 0.25 + (0.75 * squares.e3) / played.b : 0 }"
-        >
-          {{ squares.e3 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.f3 ? 0.25 + (0.75 * squares.f3) / played.b : 0 }"
-        >
-          {{ squares.f3 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.g3 ? 0.25 + (0.75 * squares.g3) / played.b : 0 }"
-        >
-          {{ squares.g3 }}
-        </div>
-      </div>
-      <div class="square">
-        <div
-          class="heatmap-indicator"
-          v-bind:style="{ opacity: squares.h3 ? 0.25 + (0.75 * squares.h3) / played.b : 0 }"
-        >
-          {{ squares.h3 }}
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-    </div>
-    <div class="row-reversed">
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
-      <div class="square"></div>
     </div>
   </div>
 </template>
@@ -230,12 +49,14 @@ export default {
 
 .row .square:nth-child(odd),
 .row-reversed .square:nth-child(even) {
-  background-color: var(--secondary-color-light);
+  color: var(--neutral-color-dark);
+  background-color: var(--chessboard-light-color);
 }
 
 .row .square:nth-child(even),
 .row-reversed .square:nth-child(odd) {
-  background-color:var(--secondary-color);
+  color: var(--neutral-color-light);
+  background-color: var(--chessboard-dark-color);
 }
 
 .square::before,
@@ -246,7 +67,8 @@ export default {
   padding-inline: 0.2em;
 
   font-size: var(--fs--2);
-  color: var(--primary-color-dark);
+  font-weight: 700;
+  color: inherit;
 
   opacity: 0.3;
 }
@@ -270,8 +92,9 @@ export default {
   display: grid;
   place-items: center;
 
-  color: var(--primary-color-light);
+  font-weight: 700;
+  color: var(--win-color);
 
-  background-color: var(--primary-color-dark);
+  background-color: var(--win-color-light);
 }
 </style>
