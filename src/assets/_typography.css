@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@900&display=swap');
 
 :root {
   --fs--2: clamp(0.64rem, 0.18vw + 0.6rem, 0.74rem);
@@ -28,8 +28,13 @@ body {
   font-size: var(--fs-0);
 }
 
+a {
+  font-weight: 700;
+}
+
+
 input[type='text'] {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 input[type='text']::placeholder {
@@ -43,7 +48,7 @@ input[type='text']::placeholder {
 
 .quote > :first-child::before,
 .quote > :first-child::after {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .quote > :first-child::before {
