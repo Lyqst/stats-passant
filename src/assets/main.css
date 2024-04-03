@@ -300,10 +300,11 @@ button {
   .links li {
     text-align: right;
   }
-  .reset-button {
-    display: grid;
-    place-content: center;
-    margin-inline-start: 0.4em;
-    padding: 0 0.6em;
-  }
+}
+
+.reset-button {
+  display: grid;
+  place-content: center;
+  margin-inline-start: 0.4em;
+  padding: 0 0.6em;
 }
