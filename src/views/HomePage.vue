@@ -14,9 +14,9 @@
   <main>
     <section class="initial-form">
       <div class="form-group hideable" :class="{ hidden: loading || loaded }">
-        <label> Load data for </label>
+        <label> Username </label>
         <input type="text" v-model="user" placeholder="username" />
-        <label>on</label>
+        <label> Site </label>
         <div class="site-select" :class="{ 'login-show': site == 'Lichess' }">
           <div class="button-group">
             <button :class="{ selected: site === 'Lichess' }" @click="site = 'Lichess'">
@@ -30,11 +30,11 @@
             <template v-if="!accessContent">
               <a href="#" @click="loginLichess()">Login to Lichess</a>
               <span class="log-info">
-                <v-icon name="md-info" fill="var(--primary-color)" />
+                <v-icon name="md-info" fill="var(--text-accent-color)" />
                 Speeds up game loading
               </span>
             </template>
-            <div v-else class="log-info"><v-icon name="md-info" fill="var(--primary-color)" /> Logged in</div>
+            <div v-else class="log-info"><v-icon name="md-info" fill="var(--text-accent-color)" /> Logged in</div>
           </div>
         </div>
       </div>
@@ -57,46 +57,46 @@
       <div class="pawns">
         <v-icon
           name="fa-chess-pawn"
-          fill="var(--primary-color)"
+          fill="var(--text-accent-color)"
           v-for="n in totalPlayed"
           :key="n"
         />
       </div>
       <div class="basic-stats">
         <p>
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />
           <b>{{ user }}</b> has played en passant <b>{{ totalPlayed }}</b> times out of a possible
           <b>{{ totalOpp }}</b> ({{ ((100 * totalPlayed) / totalOpp).toFixed(2) }}%), or once every
           <b>{{ (processedGames / totalPlayed).toFixed(0) }}</b> games.
         </p>
         <p v-if="opportunities.w">
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />
           <b>{{ played.w }}</b> out of <b>{{ opportunities.w }}</b> ({{
             ((100 * played.w) / opportunities.w).toFixed(2)
           }}%) with white.
         </p>
         <p v-if="opportunities.b">
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />
           <b>{{ played.b }}</b> out of <b>{{ opportunities.b }}</b> ({{
             ((100 * played.b) / opportunities.b).toFixed(2)
           }}%) with black.
         </p>
         <p>
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />
           Earliest en passant:
           <a :href="earliest.link" target="_blank"
             >move {{ earliest.move }}<v-icon name="fa-external-link-square-alt"
           /></a>
         </p>
         <p>
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />
           Latest en passant:
           <a :href="latest.link" target="_blank"
             >move {{ latest.move }}<v-icon name="fa-external-link-square-alt"
           /></a>
         </p>
         <p v-if="checkmates.length > 0">
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />
           <b>{{ checkmates.length }} en passant checkmates! </b
           ><a v-for="(link, index) in checkmates" :key="index" :href="link" target="_blank"
             >[{{ index + 1 }}<v-icon name="fa-external-link-square-alt" />]</a
@@ -107,7 +107,7 @@
     <section class="result-charts hideable" :class="{ hidden: totalPlayed == 0 }">
       <h2>Game Results</h2>
       <p>
-        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />Games where
+        <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />Games where
         <b>{{ user }}</b> played en passant at least once ({{
           results.enPassant.w.total + results.enPassant.b.total
         }}).
@@ -116,7 +116,7 @@
         <Bar :data="chartData('enPassant')" :options="chartOptions" />
       </div>
       <p>
-        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />Games where
+        <v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />Games where
         <b>{{ user }}</b> never played en passant ({{
           results.noEnPassant.w.total + results.noEnPassant.b.total
         }}).
@@ -136,7 +136,7 @@
   <aside class="links">
     <div class="links-title">
       <span
-        ><v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />Made by
+        ><v-icon name="bi-arrow-right-square-fill" fill="var(--text-accent-color)" />Made by
         <b>Lyqst</b></span
       >
     </div>
