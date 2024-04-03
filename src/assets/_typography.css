@@ -33,9 +33,9 @@ a {
 }
 
 svg {
-  font-size: inherit !important;
   width: 1em !important;
   height: 1em !important;
+  font-size: inherit !important;
 }
 
 input[type='text'] {
