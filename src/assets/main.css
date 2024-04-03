@@ -252,10 +252,6 @@ button {
   padding: 0;
 }
 
-.links-title {
-  display: flex;
-}
-
 @media only screen and (max-width: 599px) {
   .links-list {
     place-items: center;
@@ -271,7 +267,6 @@ button {
   .links-title {
     flex-grow: 1;
     justify-self: end;
-    text-align: right;
   }
 
   .links-list {

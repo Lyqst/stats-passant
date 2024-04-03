@@ -133,9 +133,9 @@
   </main>
   <aside class="links">
     <div class="links-title">
-      <span>Made by</span>
-      <span>
-        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" /><b>Lyqst</b></span
+      <span
+        ><v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />Made by
+        <b>Lyqst</b></span
       >
     </div>
     <ul class="links-list">
