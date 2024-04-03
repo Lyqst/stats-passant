@@ -31,7 +31,6 @@ h1 {
   display: flex;
   align-items: center;
   margin-block: 0.375em 0.125em;
-
 }
 
 h2 {
@@ -45,7 +44,6 @@ p {
   margin-block-start: 1.125em;
   text-align: center;
 }
-
 
 input[type='text'] {
   border-bottom: solid 1px rgba(42, 42, 42, 0.2);
@@ -100,7 +98,8 @@ button {
   overflow: initial;
   max-height: 100vh;
   opacity: 1;
-  transition: max-height var(--fast-transition-speed) ease-in, opacity var(--slow-transition-speed) ease-out, margin var(--fast-transition-speed) ease-in;
+  transition: max-height var(--fast-transition-speed) ease-in,
+    opacity var(--slow-transition-speed) ease-out, margin var(--fast-transition-speed) ease-in;
 }
 
 .hideable.hidden {
@@ -114,7 +113,8 @@ button {
 
   opacity: 0;
 
-  transition: opacity var(--fast-transition-speed) ease-in, max-height var(--slow-transition-speed) ease-out, margin var(--slow-transition-speed) ease-in;
+  transition: opacity var(--fast-transition-speed) ease-in,
+    max-height var(--slow-transition-speed) ease-out, margin var(--slow-transition-speed) ease-in;
 }
 
 .quote {
@@ -139,12 +139,12 @@ button {
   flex-grow: 1;
   transition: flex-grow 600ms ease;
   animation: pulse 2.5s ease infinite;
-}  
+}
 
 .load-button.loaded {
   cursor: initial;
   flex-grow: 1;
-}  
+}
 
 .form-group {
   display: grid;
