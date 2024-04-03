@@ -128,7 +128,7 @@ button {
 @keyframes pulse {
   0%,
   100% {
-    background-color: var(--surface-accent-color);
+    background-color: var(--surface-action-color);
   }
   50% {
     background-color: var(--surface-active-color);

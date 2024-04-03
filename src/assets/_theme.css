@@ -1,13 +1,13 @@
 :root {
   --primary-color: hsl(258, 45%, 35%);
   --primary-color-light: hsl(258, 55%, 55%);
-  --primary-color-dark: hsl(258, 22%, 12%);
+  --primary-color-dark: hsl(270, 33%, 10%);
   --secondary-color: hsl(194, 47%, 47%);
   --secondary-color-light: hsl(194, 47%, 77%);
-  --secondary-color-dark: hsl(194, 50%, 20%);
+  --secondary-color-dark: hsl(194, 70%, 26%);
   --neutral-color: hsl(60, 3%, 89%);
   --neutral-color-light: hsl(60, 4%, 98%);
-  --neutral-color-dark: hsl(60, 1%, 11%);
+  --neutral-color-dark: hsl(60, 7%, 6%);
   --win-color: hsl(120, 30%, 25%);
   --win-color-light: hsl(120, 30%, 65%);
   --draw-color: hsl(59, 35%, 22%);
@@ -21,12 +21,12 @@
 html {
   --surface-far-color: var(--neutral-color);
   --surface-near-color: var(--neutral-color-light);
-  --surface-accent-color: var(--secondary-color-light);
+  --surface-action-color: var(--secondary-color-light);
   --surface-active-color: var(--secondary-color);
   --text-color: var(--neutral-color-dark);
   --text-accent-color: var(--primary-color);
   --text-action-color: var(--secondary-color);
-  --text-active-color: var(--secondary-color-dark);
+  --text-active-color: var(--secondary-color-light);
 
   color: var(--text-color);
   background: var(--surface-far-color);
@@ -35,11 +35,11 @@ html {
 html.dark {
   --surface-far-color: var(--neutral-color-dark);
   --surface-near-color: var(--primary-color-dark);
-  --surface-accent-color: var(--neutral-color-dark);
-  --surface-active-color: var(--secondary-color-dark);
+  --surface-action-color: var(--secondary-color-dark);
+  --surface-active-color: var(--secondary-color);
   --text-color: var(--neutral-color-light);
   --text-action-color: var(--secondary-color);
-  --text-active-color: var(--secondary-color);
+  --text-active-color: var(--secondary-color-light);
 
   color: var(--text-color);
   background: var(--surface-far-color);
@@ -61,13 +61,13 @@ button {
   color: var(--text-action-color);
 }
 
-::selection {
-  color: var(--text-action-color);
-  background-color: var(--surface-accent-color);
+a:hover,
+a:focus-visible {
+  color: var(--text-active-color);
 }
 
 button {
-  background-color: var(--surface-accent-color);
+  background-color: var(--surface-action-color);
 }
 
 button:hover,
@@ -75,6 +75,11 @@ button:focus-visible,
 button.selected {
   color: var(--text-active-color);
   background-color: var(--surface-active-color);
+}
+
+::selection {
+  color: var(--text-action-color);
+  background-color: var(--surface-action-color);
 }
 
 .load-button {
