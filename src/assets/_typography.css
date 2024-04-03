@@ -32,6 +32,11 @@ a {
   font-weight: 700;
 }
 
+svg {
+  font-size: inherit !important;
+  width: 1em !important;
+  height: 1em !important;
+}
 
 input[type='text'] {
   font-weight: 700;

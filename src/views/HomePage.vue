@@ -1,9 +1,9 @@
 <template>
   <header>
     <h1>
-      <v-icon name="bi-arrow-down-square-fill" scale="1.4" />
+      <v-icon name="bi-arrow-down-square-fill" />
       Stats
-      <v-icon name="bi-arrow-up-left-square-fill" scale="1.4" />
+      <v-icon name="bi-arrow-up-left-square-fill" />
       Passant
     </h1>
     <div class="quote">
@@ -29,7 +29,7 @@
           <div v-if="!accessContent">
             <a href="#" @click="loginLichess()">Login to Lichess</a>
             <span class="log-info">
-              <v-icon name="md-info" scale="0.9" fill="var(--primary-color)" />
+              <v-icon name="md-info" fill="var(--primary-color)" />
               Speeds up game loading
             </span>
           </div>
@@ -46,7 +46,7 @@
           {{ loadButtonText }}
         </button>
         <button v-if="loaded" class="reset-button" @click="reset()">
-          <v-icon name="hi-solid-backspace" scale="1.6" />
+          <v-icon name="hi-solid-backspace" />
         </button>
       </div>
     </section>
@@ -55,7 +55,6 @@
       <div class="pawns">
         <v-icon
           name="fa-chess-pawn"
-          scale="1.1"
           fill="var(--primary-color)"
           v-for="n in totalPlayed"
           :key="n"
@@ -63,39 +62,39 @@
       </div>
       <div class="basic-stats">
         <p>
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
           <b>{{ user }}</b> has played en passant <b>{{ totalPlayed }}</b> times out of a possible
           <b>{{ totalOpp }}</b> ({{ ((100 * totalPlayed) / totalOpp).toFixed(2) }}%), or once every
           <b>{{ (processedGames / totalPlayed).toFixed(0) }}</b> games.
         </p>
         <p v-if="opportunities.w">
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
           <b>{{ played.w }}</b> out of <b>{{ opportunities.w }}</b> ({{
             ((100 * played.w) / opportunities.w).toFixed(2)
           }}%) with white.
         </p>
         <p v-if="opportunities.b">
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
           <b>{{ played.b }}</b> out of <b>{{ opportunities.b }}</b> ({{
             ((100 * played.b) / opportunities.b).toFixed(2)
           }}%) with black.
         </p>
         <p>
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
           Earliest en passant:
           <a :href="earliest.link" target="_blank"
             >move {{ earliest.move }}<v-icon name="fa-external-link-square-alt"
           /></a>
         </p>
         <p>
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
           Latest en passant:
           <a :href="latest.link" target="_blank"
             >move {{ latest.move }}<v-icon name="fa-external-link-square-alt"
           /></a>
         </p>
         <p v-if="checkmates.length > 0">
-          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />
+          <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />
           <b>{{ checkmates.length }} en passant checkmates! </b
           ><a v-for="(link, index) in checkmates" :key="index" :href="link" target="_blank"
             >[{{ index + 1 }}<v-icon name="fa-external-link-square-alt" />]</a
@@ -106,8 +105,8 @@
     <section class="result-charts hideable" :class="{ hidden: totalPlayed == 0 }">
       <h2>Game Results</h2>
       <p>
-        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />Games
-        where <b>{{ user }}</b> played en passant at least once ({{
+        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />Games where
+        <b>{{ user }}</b> played en passant at least once ({{
           results.enPassant.w.total + results.enPassant.b.total
         }}).
       </p>
@@ -115,8 +114,8 @@
         <Bar :data="chartData('enPassant')" :options="chartOptions" />
       </div>
       <p>
-        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" scale="1.2" />Games
-        where <b>{{ user }}</b> never played en passant ({{
+        <v-icon name="bi-arrow-right-square-fill" fill="var(--primary-color)" />Games where
+        <b>{{ user }}</b> never played en passant ({{
           results.noEnPassant.w.total + results.noEnPassant.b.total
         }}).
       </p>
