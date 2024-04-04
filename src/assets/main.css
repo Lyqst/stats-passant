@@ -329,17 +329,17 @@ button {
 }
 
 .switch-container {
-  margin-block-start: 0.5em;
   display: flex;
   gap: 0.125em;
   place-content: center end;
+  margin-block-start: 0.5em;
 }
 
 .switch {
+  cursor: pointer;
   width: 2.25em;
   background-color: var(--surface-far-color);
   border-radius: 0.25em;
-  cursor: pointer;
 }
 
 .switch:hover::after {
@@ -348,11 +348,15 @@ button {
 
 .switch::after {
   content: '';
+
   display: block;
+
   width: 1em;
   height: 1em;
+
   background-color: var(--surface-action-color);
   border-radius: 0.25em;
+
   transition: transform 200ms ease, background-color 200ms ease;
 }
 
