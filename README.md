@@ -1,9 +1,13 @@
-# Stats Passant
-Simple **[Vue](https://vuejs.org/)** website to load and display user statistics about the chess move **[En Passant](https://en.wikipedia.org/wiki/En_passant)**, from games on **[Lichess](https://lichess.org)** or **[Chess.com](https://www.chess.com)**.
+# ⇩STATS⬁PASSANT
+[![lichess badge](https://img.shields.io/badge/Lichess-%2321262d?style=for-the-badge&logo=lichess)](https://lichess.org)
+[![chess.com badge](https://img.shields.io/badge/Chess.com-%2321262d?style=for-the-badge&logo=chessdotcom)](https://www.chess.com)
 
-# Libraries used
-- **[chess.js](https://github.com/jhlywa/chess.js)**
-- **[vue-chartjs](https://vue-chartjs.org/)**
-- **[chess-web-api](https://github.com/andyruwruw/chess-web-api)**
-- **[pgn-parser](https://github.com/mliebelt/pgn-parser)**
-- **[oauth2-auth-code-pkce](https://github.com/BitySA/oauth2-auth-code-pkce)**
+[![vue badge](https://img.shields.io/badge/vue.js-%2321262d?style=for-the-badge&logo=vuedotjs)](https://vuejs.org/)
+[![vue-chartjs badge](https://img.shields.io/badge/vue--chartjs-%2321262d?style=for-the-badge&logo=vuedotjs)](https://vue-chartjs.org/)
+
+[![chess.js badge](https://img.shields.io/badge/chess.js-%2321262d?style=for-the-badge&logo=javascript)](https://github.com/jhlywa/chess.js)
+[![chess-web-api badge](https://img.shields.io/badge/chess--web--api-%2321262d?style=for-the-badge&logo=javascript)](https://github.com/andyruwruw/chess-web-api)
+[![pgn-parser badge](https://img.shields.io/badge/pgn--parser-%2321262d?style=for-the-badge&logo=javascript)](https://github.com/mliebelt/pgn-parser)
+[![oauth2-auth-code-pkce badge](https://img.shields.io/badge/oauth2--auth--code--pkce-%2321262d?style=for-the-badge&logo=javascript)](https://github.com/BitySA/oauth2-auth-code-pkce)
+
+**Load and display user statistics related specifically to [en passant](https://en.wikipedia.org/wiki/En_passant), the [~~in~~famous](https://knowyourmeme.com/memes/en-passant-google-en-passant) chess move.**

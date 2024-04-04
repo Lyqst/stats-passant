@@ -1,12 +1,14 @@
 {
   "name": "stats-passant",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "stylelint": "stylelint \"**/*.{css,vue}\" --fix"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix",
+    "stylelint": "stylelint \"**/*.{css,vue}\" --fix",
+    "prerelease": "npm run lint && npm run stylelint && git add . && git commit -m \"chore: lint and stylelint\"",
+    "release": "commit-and-tag-version"
   },
   "dependencies": {
     "@bity/oauth2-auth-code-pkce": "^2.13.0",
@@ -28,6 +30,7 @@
     "@rushstack/eslint-patch": "^1.2.0",
     "@vitejs/plugin-vue": "^4.2.1",
     "@vue/eslint-config-prettier": "^7.1.0",
+    "commit-and-tag-version": "^12.2.0",
     "eslint": "^8.39.0",
     "eslint-plugin-vue": "^9.11.0",
     "postcss-html": "^1.5.0",
