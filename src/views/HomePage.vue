@@ -27,7 +27,7 @@
             </button>
           </div>
           <div class="lichess-login">
-            <template v-if="!accessContent">
+            <template v-if="!loggedIn">
               <a href="#" @click="loginLichess()">Login to Lichess</a>
               <span class="log-info">
                 <v-icon name="md-info" fill="var(--text-accent-color)" />
@@ -172,9 +172,16 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 import ChessboardHeatmap from '../components/ChessboardHeatmap.vue'
 import ChessWebAPI from 'chess-web-api'
 import { parse as parsePgn } from '@mliebelt/pgn-parser'
-import { OAuth2AuthCodePKCE } from '@bity/oauth2-auth-code-pkce'
+import { OAuth2AuthCodePkceClient } from 'oauth2-pkce'
 
 const chessAPI = new ChessWebAPI({ queue: true })
+
+const oauthClient = new OAuth2AuthCodePkceClient({
+  authorizationUrl: 'https://lichess.org/oauth',
+  tokenUrl: 'https://lichess.org/api/token',
+  clientId: 'stats-passant',
+  redirectUrl: window.location.origin + window.location.pathname
+})
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ChartDataLabels)
 
@@ -247,19 +254,7 @@ export default {
           }
         }
       },
-      oauth: new OAuth2AuthCodePKCE({
-        authorizationUrl: 'https://lichess.org/oauth',
-        tokenUrl: 'https://lichess.org/api/token',
-        clientId: 'stats-passant',
-        scopes: [],
-        redirectUrl: (() => {
-          const url = new URL(location.href)
-          url.search = ''
-          return url.href
-        })(),
-        onAccessTokenExpiry: (refreshAccessToken) => refreshAccessToken()
-      }),
-      accessContent: ''
+      loggedIn: false
     }
   },
   computed: {
@@ -285,7 +280,7 @@ export default {
   methods: {
     async loginLichess() {
       sessionStorage.setItem('username', this.user)
-      await this.oauth.fetchAuthorizationCode()
+      await this.oauth.requestAuthorizationCode()
     },
 
     loadGames() {
@@ -297,12 +292,15 @@ export default {
     loadLichessGames() {
       let fetch = window.fetch
 
-      if (this.accessContent) {
-        fetch = this.oauth.decorateFetchHTTPClient(window.fetch)
+      if (this.loggedIn) {
+        fetch = oauthClient.makeRetryFetchFunction(window.fetch)
       }
-      const stream = fetch(`https://lichess.org/api/games/user/${this.user}?perfType=ultraBullet%2Cbullet%2Cblitz%2Crapid%2Cclassical%2Ccorrespondence`, {
-        headers: { Accept: 'application/x-ndjson' }
-      })
+      const stream = fetch(
+        `https://lichess.org/api/games/user/${this.user}?perfType=ultraBullet%2Cbullet%2Cblitz%2Crapid%2Cclassical%2Ccorrespondence`,
+        {
+          headers: { Accept: 'application/x-ndjson' }
+        }
+      )
 
       stream
         .then((response) => {
@@ -547,15 +545,6 @@ export default {
     }
   },
   beforeMount() {
-    this.oauth.isReturningFromAuthServer().then((hasAuthCode) => {
-      this.site = 'Lichess'
-      this.user = sessionStorage.getItem('username')
-      sessionStorage.removeItem('username')
-      if (!hasAuthCode) return
-      this.oauth.getAccessToken().then((token) => {
-        this.accessContent = token
-      })
-    })
     if (localStorage.getItem('darkMode') === 'true') {
       this.darkMode = true
     } else if (localStorage.getItem('darkMode') === 'false') {
@@ -565,6 +554,20 @@ export default {
     } else {
       this.darkMode = false
     }
+  },
+  async mounted() {
+    if (oauthClient.isReturningFromAuthServer()) {
+      await oauthClient.receiveCode()
+      this.tokens = await oauthClient.getTokens()
+    }
+
+    if (oauthClient.isAuthorized()) {
+      this.loggedIn = true
+      this.site = 'Lichess'
+    }
+
+    this.user = sessionStorage.getItem('username') || ''
+    sessionStorage.removeItem('username')
   }
 }
 </script>
