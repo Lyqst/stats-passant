@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.1](https://github.com/Lyqst/stats-passant/compare/v1.1.0...v1.1.1) (2024-04-17)
+
+
+### Bug Fixes
+
+* lichess login issue ([2ddaa4a](https://github.com/Lyqst/stats-passant/commit/2ddaa4ab85cb2220e6875d43f168048b27a53e03))
+
 ## 1.1.0 (2024-04-04)
 
 
