@@ -7,7 +7,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix",
     "stylelint": "stylelint \"**/*.{css,vue}\" --fix",
-    "prerelease": "npm run lint && npm run stylelint && git add . && git commit -m \"chore: lint and stylelint\"",
+    "prerelease": "npm run lint && npm run stylelint && git add . && git diff-index --quiet HEAD || git commit -m \"chore: lint and stylelint\"",
     "release": "commit-and-tag-version"
   },
   "dependencies": {
