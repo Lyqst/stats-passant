@@ -280,7 +280,7 @@ export default {
   methods: {
     async loginLichess() {
       sessionStorage.setItem('username', this.user)
-      await this.oauth.requestAuthorizationCode()
+      await oauthClient.requestAuthorizationCode()
     },
 
     loadGames() {
